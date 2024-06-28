@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" >
+<head th:replace="~{fragments :: head('Adicionar em ' + ${categoria.nome})}" ></head>
+
+<body>
+    <header th:replace="~{fragments :: header}"></header>
+    <div class="container mt-2 mb-5">
+        <div class="row">
+            <h1 style="text-align: center" th:text="'Adicionar em ' + ${categoria.nome}"></h1>
+        </div>
+
+        <div th:each="tarefa : ${tarefas}" class="card text-center">
+            <div class="card-header">
+                Tarefa
+            </div>
+            <div class="card-body">
+                <h5 class="card-title" th:text="${tarefa.titulo}"></h5>
+                <p class="card-text" th:text="${tarefa.descricao}"></p>
+                <a th:href="@{/categoriaTarefas/{categoriaId}/{tarefaId}/add(tarefaId = ${tarefa.id},categoriaId = ${categoria.id})}" class="btn btn-danger">Adicionar</a>
+            </div>
+            <div class="card-footer text-muted" th:text="${tarefa.data}"></div>
+        </div>
+    </div>
+
+
+    <!-- Bootstrap Script -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</body>
+</html>

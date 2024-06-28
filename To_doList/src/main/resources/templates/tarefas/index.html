@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" >
+<head th:replace="~{fragments :: head('Tarefas')}" ></head>
+
+<body>
+    <header th:replace="~{fragments :: header}"></header>
+
+    <div class="container mt-2 mb-5">
+        <div class="column">
+            <h1 style="text-align: center">Tarefas</h1>
+            <a th:href="@{tarefas/new}" class="mb-3 btn btn-primary">Nova Tarefa</a>
+        </div>
+
+        <div th:each="tarefa : ${tarefas}" class="card mt-3 text-center">
+            <div class="card-header">
+                <a th:href="@{/tarefas/{id}/concluida(id = ${tarefa.id})}" class="btn btn-primary" th:unless="*{tarefa.concluida}" >Concluir</a>
+                <label class="form-check-label"  th:if="*{tarefa.concluida}">Concluída</label>
+            </div>
+            <div class="card-body">
+                <h5 class="card-title" th:text="${tarefa.titulo}"></h5>
+                <p class="card-text" th:text="${tarefa.descricao}"></p>
+                <a th:href="@{tarefas/{id}(id = ${tarefa.id})}" class="btn btn-primary">Detalhar</a>
+            </div>
+            <div class="card-footer text-muted" th:text="${tarefa.data}"></div>
+        </div>
+    </div>
+
+    <!-- Bootstrap Script -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</body>
+</html>

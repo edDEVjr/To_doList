@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" >
+<head th:replace="~{fragments :: head('Categorias')}" ></head>
+
+<body>
+    <header th:replace="~{fragments :: header}"></header>
+    <div class="container mt-2 mb-5">
+        <h1 style="text-align: center">Categorias</h1>
+        <div th:each="categoria : ${categorias}" class="card mt-3 text-center">
+            <div class="card-header">
+                Categoria
+            </div>
+            <div class="card-body">
+                <h5 class="card-title" th:text="${categoria.nome}"></h5>
+                <p class="card-text" th:text="${categoria.descricao}"></p>
+                <a th:href="@{categorias/{id}(id = ${categoria.id})}" class="btn btn-primary">Detalhar</a>
+                <a th:href="@{categoriaTarefas/{id}/tarefas(id = ${categoria.id})}" class="btn btn-primary">Tarefas</a>
+                <a th:href="@{categoriaTarefas/{id}/addTarefas(id = ${categoria.id})}" class="btn btn-primary">Add Tarefas</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap Script -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</body>
+</html>

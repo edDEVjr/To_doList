@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" >
+<head th:replace="~{fragments :: head('Tarefa')}" ></head>
+
+<body>
+  <header th:replace="~{fragments :: header}"></header>
+  <div class="container">
+    <div th:object="${tarefa}" class="card text-center">
+      <div class="card-header">
+        <div class="form-group form-check">
+          <input type="checkbox" class="form-check-input" id="completed" th:field="*{concluida}">
+          <a th:href="@{/tarefas/{id}/concluida(id = ${tarefa.id})}" class="btn btn-primary" th:unless="*{concluida}" >Concluir</a>
+          <label class="form-check-label" for="completed" th:if="*{concluida}">Concluída</label>
+        </div>
+      </div>
+
+      <div class="card-body">
+        <h5 class="card-title" th:text="${tarefa.titulo}"></h5>
+        <p class="card-text" th:text="${tarefa.descricao}"></p>
+        <div class="d-flex justify-content-between">
+          <a th:href="@{/tarefas/{id}/delete(id = ${tarefa.id})}" class="btn btn-danger">Deletar</a>
+          <a th:href="@{/tarefas/{id}/edit(id = ${tarefa.id})}" class="btn btn-primary">Editar</a>
+        </div>
+      </div>
+
+      <div class="card-footer text-muted" th:text="${tarefa.data}"></div>
+    </div>
+    <a href="/tarefas" class="btn" style="border: solid 1px ">Voltar</a>
+  </div>
+
+
+  <!-- Bootstrap Script -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</body>
+</html>
